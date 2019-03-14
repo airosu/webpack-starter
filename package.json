@@ -1,0 +1,29 @@
+{
+  "name": "webpack-starter",
+  "version": "1.0.0",
+  "description": "Webpack project starter.",
+  "main": "index.js",
+  "scripts": {
+    "prod": "webpack --mode production --progress true",
+    "prod-w": "webpack --mode production --progress true --watch",
+    "dev": "webpack --mode development --progress true",
+    "dev-w": "webpack --mode development --progress true --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airosu/webpack-starter.git"
+  },
+  "author": "airosu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airosu/webpack-starter/issues"
+  },
+  "homepage": "https://github.com/airosu/webpack-starter#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
