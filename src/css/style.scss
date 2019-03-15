@@ -1,0 +1,22 @@
+$color_darkcyan: darkcyan;
+$color_pink: rgb(243, 162, 162);
+
+
+
+body {
+    background-color: $color_darkcyan;
+}
+
+p {
+    color: $color_pink;
+}
+
+@mixin autoprefixer-test {
+    user-select: none;
+}
+
+.autoprefixer-test {
+    @include autoprefixer-test;
+    color: $color_pink;
+}
+
