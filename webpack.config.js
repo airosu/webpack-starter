@@ -3,6 +3,7 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 
 
@@ -14,9 +15,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
    },
+   devServer: {
+       contentBase: path.join(__dirname, 'dist'),
+       compress: true,
+       port: 8080,
+       open: true,
+       stats: 'errors-only'
+   },
    plugins: [
         new HtmlWebpackPlugin({
-            title: 'Custom template',
+            title: 'Custom template TEST',
             minify: {
                 collapseWhitespace: true
             },
@@ -32,7 +40,13 @@ module.exports = {
                     autoprefixer()
                 ]
             }
-        })
+        }),
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            notify: false,
+            server: { baseDir: ['dist'] }
+          })
    ],
    module: {
        rules: [{
