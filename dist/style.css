@@ -2,12 +2,13 @@ body {
   background-color: darkcyan; }
 
 p {
-  color: #f3a2a2; }
+  color: blue; }
 
 .autoprefixer-test {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  color: #f3a2a2; }
+  color: #f3a2a2;
+  font-size: 14px; }
 
