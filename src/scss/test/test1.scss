@@ -18,5 +18,9 @@ p {
 .autoprefixer-test {
     @include autoprefixer-test;
     color: $color_pink;
+    font-size: 14px;
 }
 
+.test-1 {
+    color: grey;
+}

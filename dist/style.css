@@ -9,5 +9,15 @@ p {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  color: #f3a2a2; }
+  color: #f3a2a2;
+  font-size: 14px; }
+
+.test-1 {
+  color: grey; }
+
+.test-2 {
+  color: darkorange; }
+
+.test-3 {
+  color: red; }
 

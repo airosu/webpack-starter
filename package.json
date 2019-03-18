@@ -4,10 +4,9 @@
   "description": "Webpack project starter.",
   "main": "index.js",
   "scripts": {
-    "prod": "webpack --mode production --progress true",
-    "prod-w": "webpack --mode production --progress true --watch",
-    "dev": "webpack --mode development --progress true",
-    "dev-w": "webpack --mode development --progress true --watch"
+    "watch": "webpack --mode development --watch",
+    "dev": "webpack --mode development --progress",
+    "build": "webpack --mode production --progress"
   },
   "repository": {
     "type": "git",
@@ -24,6 +23,8 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.3",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^2.1.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
@@ -33,6 +34,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   }
 }
