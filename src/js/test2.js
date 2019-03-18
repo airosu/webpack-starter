@@ -3,4 +3,4 @@ const testFunction2 = function() {
 }
 export {testFunction2};
 
-console.log(asdf);
+console.log('Coaie, a mers!');

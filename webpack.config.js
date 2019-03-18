@@ -53,27 +53,49 @@ const jsLoader = {
  };
 
 
- const cssLoader = {
+const cssLoader = {
     test: /\.scss$/,
     exclude: /node_modules/,
     use: [
         MiniCssExtractPlugin.loader,
-        "css-loader",
-        "postcss-loader",
-        "sass-loader"
+        {
+            loader: "css-loader",
+            options: {
+                sourceMap: true
+            }
+        },
+        {
+            loader: "postcss-loader",
+            options: {
+                sourceMap: true
+            }
+        },
+        {
+            loader: "sass-loader",
+            options: {
+                sourceMap: true
+            }
+        }
     ]
-};
-
-
+}
 
 
 
 // =========================== EXPORT ============================================
-/* To check if dev server is still needed */
 
-module.exports = {
+/* 
+Instead of exporting an object (module.exports ={}), we are exporting a function;
+This function will expect 2 arguments:
+    - Environment (env options set from the command line... what?)
+    - All other options we set from the CLI
+*/
+
+
+
+
+module.exports = (env, argv)=> ({
    entry: {
-        app: ['./src/js/index.js', './src/css/style.scss']
+        app: ['./src/js/index.js', './src/scss/style.scss']
    },
    output: {
         path: path.resolve(__dirname, 'dist'),
@@ -99,5 +121,7 @@ module.exports = {
            cssLoader
         ]
     },
-    devtool: "inline-source-map",
-}
+    devtool: argv.mode === 'development' ? 'inline-source-map' : false
+})
+
+

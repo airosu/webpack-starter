@@ -4,11 +4,9 @@
   "description": "Webpack project starter.",
   "main": "index.js",
   "scripts": {
-    "dev-server": "webpack-dev-server",
-    "start": "webpack --mode production --progress true --watch",
-    "start-dev": "webpack --mode development --progress true --watch",
-    "build": "webpack --mode production --progress true",
-    "build-dev": "webpack --mode development --progress true"
+    "watch": "webpack --mode development --watch",
+    "dev": "webpack --mode development --progress",
+    "build": "webpack --mode production --progress"
   },
   "repository": {
     "type": "git",
