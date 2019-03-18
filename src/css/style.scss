@@ -8,7 +8,7 @@ body {
 }
 
 p {
-    color: red;
+    color: $color_pink;
 }
 
 @mixin autoprefixer-test {

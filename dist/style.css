@@ -2,7 +2,7 @@ body {
   background-color: darkcyan; }
 
 p {
-  color: blue; }
+  color: #f3a2a2; }
 
 .autoprefixer-test {
   -webkit-user-select: none;
@@ -12,3 +12,5 @@ p {
   color: #f3a2a2;
   font-size: 14px; }
 
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvY3NzL3N0eWxlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQSw2QkFBNkI7O0FBRTdCO0FBQ0EsaUJBQWlCOztBQUVqQjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxrQkFBa0IiLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6IGRhcmtjeWFuOyB9XG5cbnAge1xuICBjb2xvcjogI2YzYTJhMjsgfVxuXG4uYXV0b3ByZWZpeGVyLXRlc3Qge1xuICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lO1xuICAgICAtbW96LXVzZXItc2VsZWN0OiBub25lO1xuICAgICAgLW1zLXVzZXItc2VsZWN0OiBub25lO1xuICAgICAgICAgIHVzZXItc2VsZWN0OiBub25lO1xuICBjb2xvcjogI2YzYTJhMjtcbiAgZm9udC1zaXplOiAxNHB4OyB9XG4iXSwic291cmNlUm9vdCI6IiJ9*/

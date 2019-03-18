@@ -13,7 +13,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
     minify: {
         collapseWhitespace: true
     },
-    hash: true,
+    hash: false,
     template: './src/index.html'
 });
 
@@ -77,6 +77,7 @@ module.exports = {
    },
    output: {
         path: path.resolve(__dirname, 'dist'),
+        // filename: 'main.[contentHash].js'
         filename: 'main.js'
    },
    devServer: {
@@ -97,5 +98,6 @@ module.exports = {
            jsLoader,
            cssLoader
         ]
-    }
+    },
+    devtool: "inline-source-map",
 }
