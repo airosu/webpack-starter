@@ -1,4 +1,4 @@
-import {sayHello} from './test';
-import {testFunction2} from './test2';
-sayHello('World');
-testFunction2();
+import {sayHello} from './sayHello';
+
+sayHello('World!');
+

@@ -4,12 +4,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 
 // ========================== PLUGINS ===========================================
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
-    title: 'Custom template TEST',
+    title: 'Custom Template',
     minify: {
         collapseWhitespace: true
     },
@@ -19,7 +22,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 
 
 const miniCssPlugin = new MiniCssExtractPlugin({
-    filename: 'style.css'
+    filename: '[name].[contentHash].css'
 });
 
 
@@ -38,6 +41,9 @@ const browserSyncPlugin = new BrowserSyncPlugin({
     notify: false,
     server: { baseDir: ['dist'] }
 });
+
+
+const cleanWebpackPlugin = new CleanWebpackPlugin();
 
 
 // ========================== MODULES RULES ===========================================
@@ -80,13 +86,36 @@ const cssLoader = {
 }
 
 
+const htmlLoader = {
+    test: /\.html$/,
+    exclude: /node_modules/,
+    use: [
+        "html-loader"
+    ]
+}
+
+
+const imageLoader = {
+    test: /\.(svg|png|jpg|gif)$/,
+    use: [
+        {
+            loader: "file-loader",
+            options: {
+                name: "[name].[hash].[ext]",
+                outputPath: "images"
+            }
+        }
+    ]
+}
+
+
 
 // =========================== EXPORT ============================================
 
 /* 
 Instead of exporting an object (module.exports ={}), we are exporting a function;
 This function will expect 2 arguments:
-    - Environment (env options set from the command line... what?)
+    - Environment (env options set from the command line)
     - All other options we set from the CLI
 */
 
@@ -95,12 +124,12 @@ This function will expect 2 arguments:
 
 module.exports = (env, argv)=> ({
    entry: {
-        app: ['./src/js/index.js', './src/scss/style.scss']
+        main: ['./src/js/index.js', './src/scss/style.scss'],
+        vendor: './src/js/vendors/vendor.js'
    },
    output: {
         path: path.resolve(__dirname, 'dist'),
-        // filename: 'main.[contentHash].js'
-        filename: 'main.js'
+        filename: '[name].[contentHash].bundle.js'
    },
    devServer: {
        contentBase: path.join(__dirname, 'dist'),
@@ -109,16 +138,34 @@ module.exports = (env, argv)=> ({
        open: true,
        stats: 'errors-only'
    },
+   optimization: {
+       minimizer: [
+           new OptimizeCssAssetsPlugin(),
+           new TerserPlugin()
+       ]
+   },
    plugins: [
-        htmlWebpackPlugin,
+    new HtmlWebpackPlugin({
+        title: 'Custom Template',
+        minify: {
+            collapseWhitespace: argv.mode === 'development' ? false : true,
+            removeAttributeQuotes: argv.mode === 'development' ? false : true,
+            removeComments: argv.mode === 'development' ? false : true
+        },
+        hash: false,
+        template: './src/index.html'
+    }),
         miniCssPlugin,
         webpackAutoprefixer,
-        browserSyncPlugin
+        browserSyncPlugin,
+        cleanWebpackPlugin
    ],
    module: {
        rules: [
            jsLoader,
-           cssLoader
+           cssLoader,
+           htmlLoader,
+           imageLoader
         ]
     },
     devtool: argv.mode === 'development' ? 'inline-source-map' : false
