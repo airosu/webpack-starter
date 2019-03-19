@@ -1,10 +1,10 @@
-$color_darkcyan: darkcyan;
+$bg: darkcyan;
 $color_pink: rgb(243, 162, 162);
 
 
 
 body {
-    background-color: $color_darkcyan;
+    background-color: $bg;
 }
 
 p {
@@ -18,9 +18,5 @@ p {
 .autoprefixer-test {
     @include autoprefixer-test;
     color: $color_pink;
-    font-size: 14px;
-}
-
-.test-1 {
-    color: grey;
+    font-size: 17px;
 }
