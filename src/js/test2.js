@@ -3,4 +3,4 @@ const testFunction2 = function() {
 }
 export {testFunction2};
 
-console.log('Coaie, a mers!');
+console.log('Nebunie');
