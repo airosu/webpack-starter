@@ -10,6 +10,7 @@ npm install
 Will install all dev dependencies from package.json into 'node_modules'
 
 
+
 ## Creating production build
 
 ```
@@ -17,11 +18,13 @@ npm run build
 ```
 
 
+
 ## Creating development build
 
 ```
 npm run dev
 ```
+
 
 
 ## Creating dev server / watcher
