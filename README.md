@@ -10,6 +10,26 @@ npm install
 Will install all dev dependencies from package.json into 'node_modules'
 
 
+## Structure
+
+```
+├── dist
+├── node_modules
+├── src
+│   ├── js
+│   │   ├── vendors
+│   │   │   └── vendor.js
+│   │   └── index.js
+│   ├── scss
+│   │   └── style.scss
+│   └── index.html
+├── package.json
+├── package.lock.json
+├── postcss.config.js
+└── webpack.config.js
+```
+Place your project in the src folder and run one of the following commands. In case you modify any of the folders / filed in the structure above, also remember to update webpack.config.js
+
 
 ## Creating production build
 
