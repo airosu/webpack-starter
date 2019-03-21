@@ -4,20 +4,20 @@ This is a project starter using the webpack module bundler. It is configured wit
 
 ## Features
 
-..* JS - Create one main bundle from all .js files used in the project
-..* JS - Create one main bundle from all vendors .js files used in the project
-..* JS - Compile all code to ES5 using Babel
-..* JS - Minify the code in all exported bundles
-..* JS - Cache Busting: Add hash to exported bundle names
-..* CSS - Create one main .css file from all .scss files used in the project
-..* CSS - Autoprefixer: Automatically apply vendor specific tags to .css bundle before exporting
-..* CSS - Minify the code in exported bundle
-..* CSS - Cache Busting: Add hash to exported bundle name
-..* Images - Export images (TO DO: image oprimizer)
-..* Images - Cache Busting: Add hash to each exported image name
-..* HTML - Generate new index.html from provided template
-..* HTML - Dinamically add tags for .js, .css, image files to also include hash names
-..* HTML - Minify / optimize .html file (remove whitespace / comments / quotes)
+* JS - Create one main bundle from all .js files used in the project
+* JS - Create one main bundle from all vendors .js files used in the project
+* JS - Compile all code to ES5 using Babel
+* JS - Minify the code in all exported bundles
+* JS - Cache Busting: Add hash to exported bundle names
+* CSS - Create one main .css file from all .scss files used in the project
+* CSS - Autoprefixer: Automatically apply vendor specific tags to .css bundle before exporting
+* CSS - Minify the code in exported bundle
+* CSS - Cache Busting: Add hash to exported bundle name
+* Images - Export images (TO DO: image oprimizer)
+* Images - Cache Busting: Add hash to each exported image name
+* HTML - Generate new index.html from provided template
+* HTML - Dinamically add tags for .js, .css, image files to also include hash names
+* HTML - Minify / optimize .html file (remove whitespace / comments / quotes)
 
 ## Installation
 
