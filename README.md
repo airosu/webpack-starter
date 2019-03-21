@@ -6,8 +6,7 @@ This is a project starter using the webpack module bundler. It is configured wit
 
 * JS - Create one main bundle from all .js files used in the project
 * JS - Create one main bundle from all vendors .js files used in the project
-* JS - Compile all code to ES5 using Babel
-* JS - Minify the code in all exported bundles
+* JS - Minify and compile all code to ES5 using Babel
 * JS - Cache Busting: Add hash to exported bundle names
 * CSS - Create one main .css file from all .scss files used in the project
 * CSS - Autoprefixer: Automatically apply vendor specific tags to .css bundle before exporting
