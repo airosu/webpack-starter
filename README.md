@@ -68,3 +68,118 @@ npm run dev
 ```
 npm run watch
 ```
+
+
+### Rundown
+
+* Bundle one file into one final file:
+
+```
+module.exports = {
+    entry: '.src/home.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    }
+}
+```
+
+* Bundle multiple files into one final file
+* They will be bundled in order, from left to right
+
+```
+module.exports = {
+    entry: [ '.src/home.js', './src/about.js', './src/contact.js' ],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    }
+}
+```
+
+* Bundle all files from a folder (option 1) - glob
+
+```
+const glob = require( 'glob' );
+module.exports = {
+    entry: glob.sync('../src/js/multiple/*.js'),
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+    }
+}
+```
+
+* Bundle all files from a folder (option 2) - webpack-concat-plugin
+
+```
+new ConcatPlugin({
+    uglify: true,
+    sourceMap: false,
+    name: 'vendor',
+    fileName: 'responsive/common/js/[name].js',
+    // Ensure that firstly will be added jquery, than enquire, than everything else
+    filesToConcat: [
+        './src/responsive/lib/common/jquery-3.2.1.min.js',
+        './src/responsive/lib/common/enquire.min.js',
+        './src/responsive/lib/common/*.js',
+        [ './src/js/multiple/file1.js', './src/js/multiple/file2.js' ]
+    ],
+    attributes: {
+        async: true
+    }
+})
+```
+
+
+* Bundle multiple files into multiple final files (one for each name):
+
+```
+module.exports = {
+    entry: {
+        home: './src/home.js',
+        about: './src/about.js',
+        contact: './src/contact.js'
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].bundle.js'
+    }
+}
+
+```
+
+
+* Combining file types + adding hash (.SCSS files are handled by SCSS loader):
+
+```
+module.exports = {
+    entry: {
+        main: ['./src/js/index.js', './src/scss/style.scss'],
+        vendor: './src/js/vendors/vendor.js'
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contentHash].bundle.js'
+    }
+}
+```
+
+
+* In order to compile from ES6+ to ES5 with babel, add the following rule, under module:
+
+```
+module: {
+    rules: [
+        {
+            test: /\.js?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            query: {
+                presets: ['env']
+            }
+        }
+    ]
+}
+```
+

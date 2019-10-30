@@ -1,5 +1,5 @@
-$bg: darkcyan;
-$color_pink: rgb(243, 162, 162);
+$bg: #EFEFEF;
+$color_text: #222222;
 
 
 
@@ -8,7 +8,7 @@ body {
 }
 
 p {
-    color: $color_pink;
+    color: $color_text;
 }
 
 @mixin autoprefixer-test {
@@ -17,6 +17,6 @@ p {
 
 .autoprefixer-test {
     @include autoprefixer-test;
-    color: $color_pink;
+    color: $color_text;
     font-size: 17px;
 }

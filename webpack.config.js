@@ -76,12 +76,13 @@ module.exports = (env, argv) => ({
     ],
     module: {
         rules: [{
-                test: /\.js?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['env']
-                }
+                // /* Convert ES6+ to ES5 using babel */
+                // test: /\.js?$/,
+                // exclude: /node_modules/,
+                // loader: 'babel-loader',
+                // query: {
+                //     presets: ['env']
+                // }
             },
             {
                 test: /\.scss$/,
@@ -95,6 +96,7 @@ module.exports = (env, argv) => ({
                         }
                     },
                     {
+                        /* Used for autoprefixer (cfg from postcss.config.js) */
                         loader: "postcss-loader",
                         options: {
                             sourceMap: true
