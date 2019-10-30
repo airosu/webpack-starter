@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2016",
+        // "rootDir": "./src/ts",
+    },
+    "include": [
+        "./src/ts/*.ts"
+    ],
+    // "files": [
+    //     "./src/ts/index.ts"
+    // ],
+    "exclude": [
+        "node_modules"
+    ]
+}
+
