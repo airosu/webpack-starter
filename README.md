@@ -2,6 +2,27 @@
 
 This is a project starter using the webpack module bundler. It is configured with all base plugins needed to fully export from the 'src' folder to a distribution folder, named 'dist' by default. The src folder of this project contains a couple of demo files that you might want to delete / replace: 'src/js/sayHello.js', 'src/scss/test'.
 
+## TS and JS support
+This boilerplate supports both TypeScript and Javascript, files are to be placed under /src/ts and /src/js
+- TypeScript entry points and output are configured in webpack.config.js
+- All other TypeScript configs are made within tsconfig.json
+- All JavaScript configs are made within webpack.config.js
+- Both .ts and .js files can be bundled together :
+
+```
+module.exports = {
+    entry: {
+        megamix: [ './src/js/index.js', './src/ts/index.ts' ]
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[contentHash].bundle.js'
+    }
+}
+```
+
+- If you merge both index.ts and index.js and want the final file to be ES5, be sure to add both the babel module in webpack.config.js AND add "target": "es5" in tsconfig
+
 ## Features
 
 * JS - Create one main bundle from all .js files used in the project
