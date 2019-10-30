@@ -25,11 +25,11 @@ module.exports = {
 
 ## Features
 
-* JS - Create one main bundle from all .js files used in the project
-* JS - Create one main bundle from all vendors .js files used in the project
+* JS - Create one main bundle from all .js files imported in index.js
+* JS - Create one main bundle from all vendors .js files placed in "vendors" directory
 * JS - Minify and compile all code to ES5 using Babel
 * JS - Cache Busting: Add hash to exported bundle names
-* CSS - Create one main .css file from all .scss files used in the project
+* CSS - Create one main .css file from all .scss files imported in style.scss
 * CSS - Autoprefixer: Automatically apply vendor specific tags to .css bundle before exporting
 * CSS - Minify the code in exported bundle
 * CSS - Cache Busting: Add hash to exported bundle name
@@ -133,24 +133,23 @@ module.exports = {
 
 * Bundle all files from a folder (option 2) - webpack-concat-plugin
 
+
 ```
 new ConcatPlugin({
-    uglify: true,
+    uglify: false,
     sourceMap: false,
-    name: 'vendor',
-    fileName: 'responsive/common/js/[name].js',
-    // Ensure that firstly will be added jquery, than enquire, than everything else
+    name: 'vendors',
+    fileName: '[name].[hash:8].bundle.js',
     filesToConcat: [
-        './src/responsive/lib/common/jquery-3.2.1.min.js',
-        './src/responsive/lib/common/enquire.min.js',
-        './src/responsive/lib/common/*.js',
-        [ './src/js/multiple/file1.js', './src/js/multiple/file2.js' ]
-    ],
-    attributes: {
-        async: true
-    }
+        './src/js/vendor_files/vendor4.js',
+        './src/js/vendor_files/vendor5.js',
+        './src/js/vendor_files/*.js'
+    ]
 })
+files = [1, 2, 3, 4, 5], outputs: => 4, 5, 1, 2, 3
 ```
+
+
 
 
 * Bundle multiple files into multiple final files (one for each name):
@@ -177,7 +176,7 @@ module.exports = {
 module.exports = {
     entry: {
         main: ['./src/js/index.js', './src/scss/style.scss'],
-        vendor: './src/js/vendors/vendor.js'
+        vendor: './src/js/vendor_files/vendor.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

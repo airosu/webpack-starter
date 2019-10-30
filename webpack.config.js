@@ -7,6 +7,7 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const ConcatPlugin = require('webpack-concat-plugin');
 
 
 // =========================== EXPORT ============================================
@@ -23,12 +24,8 @@ This function will expect 2 arguments:
 
 module.exports = (env, argv) => ({
     entry: {
-        // TODO: see how .scss is made
-        main: ['./src/js/index.js', './src/scss/style.scss'],
-        // TODO: get all from vendor fodler
-        vendor: './src/js/vendors/vendor.js',
-        app: './src/ts/index.ts',
-        megamix: [ './src/js/index.js', './src/ts/index.ts' ]
+        main: [ './src/ts/index.ts', './src/scss/style.scss' ],
+        // main_js: './src/js/index.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -80,7 +77,27 @@ module.exports = (env, argv) => ({
                 baseDir: ['dist']
             }
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        // /* ConcatPlugin used to concat all vendor files */
+        // new ConcatPlugin({
+        //     uglify: false,
+        //     sourceMap: false,
+        //     name: 'vendors',
+        //     fileName: '[name].[hash:8].bundle.js',
+        //     filesToConcat: [
+        //         './src/js/vendors/*.js'
+        //     ]
+        // }),
+        // /* ConcatPlugin used to concat all polyfill files */
+        // new ConcatPlugin({
+        //     uglify: false,
+        //     sourceMap: false,
+        //     name: 'polyfills',
+        //     fileName: '[name].[hash:8].bundle.js',
+        //     filesToConcat: [
+        //         './src/js/polyfills/*.js'
+        //     ]
+        // })
     ],
     module: {
         rules: [{
