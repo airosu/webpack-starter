@@ -8,6 +8,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const ConcatPlugin = require('webpack-concat-plugin');
+const glob = require( 'glob' );
 
 
 // =========================== EXPORT ============================================
@@ -24,8 +25,17 @@ This function will expect 2 arguments:
 
 module.exports = (env, argv) => ({
     entry: {
+        /* Bundle all index.ts imports tin main.js + all styles in main.css */
         main: [ './src/ts/index.ts', './src/scss/style.scss' ],
-        // main_js: './src/js/index.js'
+
+        /* main bundle from ALL files located in a folder */
+        // main_js: glob.sync('./src/js/root/**/*.js'),
+
+        /* main bundle fom index.js */
+        // main_js: './src/js/index.js',
+
+        /* Bundle both index.ts and index.js */
+        // megamix: [ './src/ts/index.ts', './src/js/index.js' ],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

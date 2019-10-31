@@ -25,9 +25,10 @@ module.exports = {
 
 ## Features
 
-* JS - Create one main bundle from all .js files imported in index.js
-* JS - Create one main bundle from all vendors .js files placed in "vendors" directory
-* JS - Minify and compile all code to ES5 using Babel
+* JS - Either create one main bundle from all .js files imported in index.js
+* JS - Or create one main bundle from all files present in a folder (e.g. root)
+* JS - Concatenate all files (usually minified) present in a folder (e.g. vendors, polyfills)
+* JS - Option to minify and compile all code to ES5 using Babel
 * JS - Cache Busting: Add hash to exported bundle names
 * CSS - Create one main .css file from all .scss files imported in style.scss
 * CSS - Autoprefixer: Automatically apply vendor specific tags to .css bundle before exporting
@@ -123,7 +124,7 @@ module.exports = {
 ```
 const glob = require( 'glob' );
 module.exports = {
-    entry: glob.sync('../src/js/multiple/*.js'),
+    entry: glob.sync('../src/js/root/**/*.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
