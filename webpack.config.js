@@ -26,7 +26,7 @@ This function will expect 2 arguments:
 module.exports = (env, argv) => ({
     entry: {
         /* Bundle all index.ts imports tin main.js + all styles in main.css */
-        main: [ './src/ts/index.ts', './src/scss/style.scss' ],
+        main: [ './src/ts/index.ts', './src/styles/scss/main.scss' ],
 
         /* main bundle from ALL files located in a folder */
         // main_js: glob.sync('./src/js/root/**/*.js'),
