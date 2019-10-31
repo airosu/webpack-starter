@@ -1,1 +1,0 @@
-console.log( 'Index 3 is here' );

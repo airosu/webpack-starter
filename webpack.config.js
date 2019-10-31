@@ -7,6 +7,8 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const ConcatPlugin = require('webpack-concat-plugin');
+const glob = require( 'glob' );
 
 
 // =========================== EXPORT ============================================
@@ -23,12 +25,25 @@ This function will expect 2 arguments:
 
 module.exports = (env, argv) => ({
     entry: {
-        main: ['./src/js/index.js', './src/scss/style.scss'],
-        vendor: './src/js/vendors/vendor.js'
+        /* Bundle all index.ts imports tin main.js + all styles in main.css */
+        main: [ './src/ts/index.ts', './src/styles/scss/main.scss' ],
+
+        /* main bundle from ALL files located in a folder */
+        // main_js: glob.sync('./src/js/root/**/*.js'),
+
+        /* main bundle fom index.js */
+        // main_js: './src/js/index.js',
+
+        /* Bundle both index.ts and index.js */
+        // megamix: [ './src/ts/index.ts', './src/js/index.js' ],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contentHash].bundle.js'
+    },
+    // resolve: {extensions:[]} allows TS module imports
+    resolve: {
+        extensions: [ '.ts', '.js' ]
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -72,7 +87,27 @@ module.exports = (env, argv) => ({
                 baseDir: ['dist']
             }
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        // /* ConcatPlugin used to concat all vendor files */
+        // new ConcatPlugin({
+        //     uglify: false,
+        //     sourceMap: false,
+        //     name: 'vendors',
+        //     fileName: '[name].[hash:8].bundle.js',
+        //     filesToConcat: [
+        //         './src/js/vendors/*.js'
+        //     ]
+        // }),
+        // /* ConcatPlugin used to concat all polyfill files */
+        // new ConcatPlugin({
+        //     uglify: false,
+        //     sourceMap: false,
+        //     name: 'polyfills',
+        //     fileName: '[name].[hash:8].bundle.js',
+        //     filesToConcat: [
+        //         './src/js/polyfills/*.js'
+        //     ]
+        // })
     ],
     module: {
         rules: [{
@@ -83,6 +118,11 @@ module.exports = (env, argv) => ({
                 // query: {
                 //     presets: ['env']
                 // }
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: 'ts-loader'
             },
             {
                 test: /\.scss$/,
